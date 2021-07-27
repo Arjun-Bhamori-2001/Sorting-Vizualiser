@@ -64,7 +64,7 @@ const Container = () => {
 
     const handleChange = (string) => {
         string = string.replaceAll(/\s/g, "");
-        string = string.replaceAll(/([8-9][0-9]|\d{3,})/g, "");
+        string = string.replaceAll(/([5-9][0-9]|\d{3,})/g, "");
         string = string.replaceAll(/\d{3}/g, "");
         string = string.replaceAll(/\s\s/g, " ");
         string = string.replaceAll(/\s,/g, ",");
@@ -375,7 +375,7 @@ const Container = () => {
             </div>
             <div className="flex-container mt-5" >
                 {!loading && (
-                    <input type="text" value={custom} style={{  margin: "auto",width:"30%",height: "10%",padding: "0.5% 1%",borderRadius: "10px",outline: "none",color:"black",fontWeight:"600"}} onChange={(e) => handleChange(e.target.value)}/>
+                    <input type="text" value={custom} style={{  margin: "auto",width:"40%",height: "10%",padding: "0.5% 1%",borderRadius: "10px",outline: "none",color:"black",fontWeight:"600"}} onChange={(e) => handleChange(e.target.value)}/>
                 )}
                 
             </div>
