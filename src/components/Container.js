@@ -27,16 +27,12 @@ const Container = () => {
         let tmp=getRandomArray(20);
         setSize(20);
         setArray(tmp);
-        let text = tmp.toString();
-        console.log(text)
-        setCustom(text);
     }
     
     const [size,setSize] = useState(20);
     const [arr,setArray] = useState(getRandomArray(size));
     const [lap,setLap] = useState(400);
-    const [custom,setCustom] = useState(arr.toString());
-    const [cusArray,setCusArray] = useState([]);
+
    
     const notify=(sort,a,b,time)=>toast(({ closeToast }) =>
     <div> 
@@ -50,34 +46,6 @@ const Container = () => {
        setLap(time);
     }
 
-    const count = (string)=>{
-        let cnt=0;
-        for(let i=0;i<string.length;i++)
-        {
-            if(string[i]===',')
-            cnt++;
-            if(cnt===19)
-                return i;
-        }
-        return string.length
-    }
-
-    const handleChange = (string) => {
-        string = string.replaceAll(/\s/g, "");
-        string = string.replaceAll(/([5-9][0-9]|\d{3,})/g, "");
-        string = string.replaceAll(/\d{3}/g, "");
-        string = string.replaceAll(/\s\s/g, " ");
-        string = string.replaceAll(/\s,/g, ",");
-        string = string.replaceAll(/,,/g, ",");
-        string = string.replaceAll(/[^0-9,\s]/g, "");
-        setArray(string
-    .split(",")
-    .filter((v) => v !== "")
-    .map((v) => +v).slice(0,19));
-    setSize(arr.length)
-    let elementCount = count(string)
-    setCustom(string.slice(0,elementCount));
-    }
 
     const bubbleSort =() => {
         setLoading(true);
@@ -372,12 +340,6 @@ const Container = () => {
             <Header genRandomArray={genRandomArray} bubbleSort={bubbleSort} setTime={setTime} insertionSort={insertionSort} selectionSort={selectionSort} mergeSort={mergeSort} quickSort={quickSort} loading={loading}/>
             <div  className="flex-container"   style={{height:'400px'}}>
                 {arr.map((item,index) => <Bar height={item} index={index}/>)}
-            </div>
-            <div className="flex-container mt-5" >
-                {!loading && (
-                    <input type="text" value={custom} style={{  margin: "auto",width:"40%",height: "10%",padding: "0.5% 1%",borderRadius: "10px",outline: "none",color:"black",fontWeight:"600"}} onChange={(e) => handleChange(e.target.value)}/>
-                )}
-                
             </div>
         </div>
     )
